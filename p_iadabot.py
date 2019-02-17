@@ -48,7 +48,7 @@ dispatcher = updater.dispatcher
 
 def start(bot, update):
 	"""Send a message when the command /start is issued"""
-	bot.send_message(chat_id=update.message.chat_id, text="I'm the PiadaBot! Quante piadine vuoi fare?")
+	bot.send_message(chat_id=update.message.chat_id, text="I'm the PiadaBot! Quante piadine vuoi fare?\nScrivi: \"\\piade x\", dove x è il numero di piade desiderato")
 
 #########################################crap
 def echo(update, context):
