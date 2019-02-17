@@ -24,6 +24,17 @@ yeast = Ingredient("Lievito per dolci non vanigliato", 15/16)
 
 import logging
 import telegram
+import telepot
+import urllib3
+import math
+
+# You can leave this bit out if you're using a paid PythonAnywhere account
+proxy_url = "http://proxy.server:3128"
+telepot.api._pools = {
+    'default': urllib3.ProxyManager(proxy_url=proxy_url, num_pools=3, maxsize=10, retries=False, timeout=30),
+}
+telepot.api._onetime_pool_spec = (urllib3.ProxyManager, dict(proxy_url=proxy_url, num_pools=1, maxsize=1, retries=False, timeout=30))
+# end of the stuff that's only needed for free accounts
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -60,7 +71,7 @@ def piade(bot, update, args):
 	"*" + lard.name + "*: " + str(int(lard.quantity*piade)) + "g \n" +\
 	"*" + milk.name + "*: " + str(int(milk.quantity*piade)) + "g \n" +\
 	"*" + water.name + "*: " + str(int(water.quantity*piade)) + "g \n" +\
-	"*" + yeast.name + "*: " + str(int(yeast.quantity*piade)) + "g \n" +\
+	"*" + yeast.name + "*: " + str(math.ceil(yeast.quantity*piade)) + "g \n" +\
 	"*Sale*: q.b.\n*Miele*: q.b." 
 	bot.send_message(chat_id=update.message.chat_id, text = message, parse_mode = telegram.ParseMode.MARKDOWN) 
 
