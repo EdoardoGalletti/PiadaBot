@@ -24,7 +24,7 @@ yeast = Ingredient("Lievito per dolci non vanigliato", 15/16)
 
 import logging
 import telegram
-import telepot
+#import telepot
 import urllib3
 import math
 
